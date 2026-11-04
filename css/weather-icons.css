@@ -1,0 +1,11 @@
+.weather-icon{overflow:visible}
+.sun-rays{transform-origin:60px 44px;animation:sun-turn 45s linear infinite}
+.cloud-drift{animation:cloud-drift 6s ease-in-out infinite}
+.rain-streaks{animation:rain-fall 1.2s ease-in-out infinite}
+.snow-flakes{animation:snow-float 3s ease-in-out infinite}
+.lightning{animation:flash 5s ease-in-out infinite}
+@keyframes sun-turn{to{transform:rotate(360deg)}}
+@keyframes cloud-drift{50%{transform:translateX(4px)}}
+@keyframes rain-fall{0%,100%{transform:translateY(-2px);opacity:.6}50%{transform:translateY(3px);opacity:1}}
+@keyframes snow-float{50%{transform:translate(2px,4px);opacity:.6}}
+@keyframes flash{0%,85%,94%,100%{opacity:1}88%,96%{opacity:.25}}

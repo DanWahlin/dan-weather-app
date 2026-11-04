@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b2c">
+  <meta name="description" content="A clearer view of your week. Beautiful, real-time weather and a five-day forecast for wherever life takes you.">
+  <meta property="og:title" content="WeatherView | A clearer view of your week">
+  <meta property="og:description" content="Current conditions and a beautifully simple five-day weather forecast.">
+  <meta property="og:type" content="website">
+  <title>WeatherView | A clearer view of your week</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://api.open-meteo.com">
+  <link rel="preconnect" href="https://geocoding-api.open-meteo.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700;750&display=swap" rel="stylesheet">
+  <style>body{margin:0;background:#101b2c;color:#f5f7fc;font-family:Inter,system-ui,sans-serif}.shell{max-width:1180px;margin:auto;padding:0 32px}[hidden]{display:none!important}</style>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/weather-icons.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to forecast</a>
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="WeatherView home">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="23" cy="15" r="8" fill="#e8bd73"/><path d="M10 31a7 7 0 1 1 1-14 10 10 0 0 1 18 2 6 6 0 1 1 1 12Z" fill="#ecf1f8"/></svg>
+        <span>Weather<span class="brand-light">View</span><span class="brand-dot">.</span></span>
+      </a>
+      <span class="header-note">A little clarity for your everyday.</span>
+      <div class="units" role="group" aria-label="Temperature units">
+        <button type="button" data-unit="imperial" aria-pressed="true">&deg;F</button>
+        <button type="button" data-unit="metric" aria-pressed="false">&deg;C</button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="intro" aria-labelledby="page-title">
+        <div><p class="eyebrow"><span class="tiny-sun" aria-hidden="true">&#10035;</span> YOUR DAILY OUTLOOK</p><h1 id="page-title">Whatever the weather.<br><span>Make it a good day.</span></h1><p class="intro-copy">A clearer view of what's ahead, wherever you are.</p></div>
+        <div class="location-controls">
+          <label class="sr-only" for="city-search">Search for a city</label>
+          <div class="search-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+            <input id="city-search" type="search" placeholder="Search a city..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="city-results">
+            <ul id="city-results" role="listbox" aria-label="Matching cities" hidden></ul>
+          </div>
+          <button type="button" id="locate" class="location-button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg> Use my location</button>
+        </div>
+      </section>
+      <div id="status" role="status" aria-live="polite" class="status" hidden></div>
+      <div id="search-status" class="sr-only" role="status" aria-live="polite"></div>
+      <div id="weather" aria-busy="true">
+        <section id="hero" class="hero skeleton" aria-label="Current weather"><div class="skeleton-line"></div><div class="skeleton-line large"></div><div class="skeleton-line"></div><span class="sr-only">Loading weather</span></section>
+        <section aria-labelledby="forecast-title" class="forecast-section">
+          <div class="section-heading"><div><p class="eyebrow">PLAN A LITTLE. ENJOY A LOT.</p><h2 id="forecast-title">Your next five days</h2></div><span class="forecast-label">The outlook, at a glance <span aria-hidden="true">&#8599;</span></span></div>
+          <div id="forecast" class="forecast-grid"></div>
+        </section>
+      </div>
+      <aside class="bottom-note"><span class="note-symbol" aria-hidden="true">&#10036;</span><p>A fresh perspective, rain or shine.<span>Weather updates automatically. You're all set.</span></p><span id="updated" class="updated"></span></aside>
+    </main>
+    <footer><span>&copy; <span id="year"></span> WeatherView<span class="footer-dot">.</span> A window to your world.</span><span>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo <span aria-hidden="true">&#8599;</span></a><span class="footer-divider">/</span><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></span></footer>
+  </div>
+  <noscript><p class="shell">Please enable JavaScript to see the live weather forecast.</p></noscript>
+</body>
+</html>
