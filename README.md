@@ -19,6 +19,8 @@ Open http://localhost:8000. Native modules require HTTP rather than opening
 - Current conditions and five-day forecast (today plus the next four days).
 - Keyboard-accessible city autocomplete and optional browser geolocation.
 - Fahrenheit/mph and Celsius/km/h units; preferences saved locally.
+- Accessible light/dark theme toggle with a saved preference. Dark is the
+  default; saved themes apply before styles load to prevent a theme flash.
 - CSS-animated SVG weather icons with reduced-motion support.
 - Responsive cards, skeleton loading, explicit errors and retry, null-safe values.
 - Ten-minute in-memory forecast cache, request cancellation, 15-second network
@@ -34,6 +36,9 @@ not a guessed city. No reverse-geocoding provider or analytics is used.
 `render.js` builds the weather display; `weather-codes.js` maps WMO conditions;
 `icons.js` supplies decorative SVGs; `storage.js` handles preferences.
 CSS is separated into tokens, base styles, components, and icon animations.
+`js/theme.js` initializes the theme independently of weather requests, with a
+separate storage key so location and unit updates cannot overwrite it. Light
+mode uses light surfaces while preserving the condition-driven weather hero.
 
 Dates use the forecast location's calendar day, not the browser's time zone.
 Day/night styling compares the API's local sunrise, sunset, and current time.
@@ -41,7 +46,7 @@ Unknown conditions and missing measurements are explicitly shown as unavailable.
 The unit toggle only commits after a successful response, so labels and data
 cannot disagree. Errors preserve previously loaded weather with a warning.
 
-No PWA/offline forecast storage, hourly charts, theme toggle, or automated test
+No PWA/offline forecast storage, hourly charts, or automated test
 toolchain is included in this version. Google Fonts loads Inter with a system
 font fallback; all weather icons are local.
 

@@ -9,13 +9,14 @@
   <meta property="og:description" content="Current conditions and a beautifully simple five-day weather forecast.">
   <meta property="og:type" content="website">
   <title>WeatherView | A clearer view of your week</title>
+  <script src="js/theme.js"></script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://api.open-meteo.com">
   <link rel="preconnect" href="https://geocoding-api.open-meteo.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700;750&display=swap" rel="stylesheet">
-  <style>body{margin:0;background:#101b2c;color:#f5f7fc;font-family:Inter,system-ui,sans-serif}.shell{max-width:1180px;margin:auto;padding:0 32px}[hidden]{display:none!important}</style>
+  <style>body{margin:0;background:var(--bg,#101b2c);color:var(--text,#f5f7fc);font-family:Inter,system-ui,sans-serif}.shell{max-width:1180px;margin:auto;padding:0 32px}[hidden]{display:none!important}</style>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -32,9 +33,15 @@
         <span>Weather<span class="brand-light">View</span><span class="brand-dot">.</span></span>
       </a>
       <span class="header-note">A little clarity for your everyday.</span>
-      <div class="units" role="group" aria-label="Temperature units">
-        <button type="button" data-unit="imperial" aria-pressed="true">&deg;F</button>
-        <button type="button" data-unit="metric" aria-pressed="false">&deg;C</button>
+      <div class="header-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Dark mode" aria-pressed="true" title="Switch to light mode">
+          <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"/></svg>
+          <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M20 14A8.5 8.5 0 0 1 10 4 8.5 8.5 0 1 0 20 14Z"/></svg>
+        </button>
+        <div class="units" role="group" aria-label="Temperature units">
+          <button type="button" data-unit="imperial" aria-pressed="true">&deg;F</button>
+          <button type="button" data-unit="metric" aria-pressed="false">&deg;C</button>
+        </div>
       </div>
     </header>
     <main id="main">
